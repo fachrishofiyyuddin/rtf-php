@@ -1,4 +1,6 @@
 <?php
+ob_start(); // Mulai output buffering
+
 session_start();
 include "koneksi/index.php";
 ?>
@@ -130,6 +132,7 @@ if (isset($_POST['BtnSimpan'])) {
         $pesan = "Inputan tidak boleh kosong.";
         $_SESSION['gagal'] = $pesan;
         header("Location:$url");
+        ob_end_flush(); // Akhiri output buffering dan kirim output
         exit();
     }
 
@@ -144,6 +147,7 @@ if (isset($_POST['BtnSimpan'])) {
         $pesan = "Data gagal disimpan.";
         $_SESSION['gagal'] = $pesan;
         header("Location:$url");
+        ob_end_flush(); // Akhiri output buffering dan kirim output
         exit();
     }
 }
